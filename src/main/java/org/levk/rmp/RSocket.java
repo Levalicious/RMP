@@ -10,7 +10,7 @@ import java.nio.channels.DatagramChannel;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RSocket {
+class RSocket {
     private DatagramChannel socket;
     private ByteBuffer buf;
 
@@ -57,7 +57,7 @@ public class RSocket {
         }
     }
 
-    public void fragment(byte[] data) {
+    private void fragment(byte[] data) {
 
         byte[][] partedData = partition(data, (MTU - 13));
 

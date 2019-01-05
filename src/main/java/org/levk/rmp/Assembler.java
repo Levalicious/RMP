@@ -6,14 +6,13 @@ import java.math.BigInteger;
 
 import static org.levk.rmp.RSocket.MAX_WAIT_MOD;
 
-public class Assembler {
+class Assembler {
     private byte[][] packets;
-    private byte[] messageId;
     private int awaiting;
     private int maxAge;
 
     public Assembler(Fragment fragment, int currentAge) {
-        this.messageId = fragment.getMessageId();
+        byte[] messageId = fragment.getMessageId();
 
         awaiting = byteArrayToInt(fragment.getMaxIndex());
         this.packets = new byte[awaiting + 1][];
@@ -52,7 +51,7 @@ public class Assembler {
         return new BigInteger(1, b).intValue();
     }
 
-    public static byte[] merge(byte[]... arrays)
+    private static byte[] merge(byte[]... arrays)
     {
         int count = 0;
         for (byte[] array : arrays)

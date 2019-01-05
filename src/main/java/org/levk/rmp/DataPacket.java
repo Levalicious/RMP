@@ -2,7 +2,7 @@ package org.levk.rmp;
 
 import java.security.SecureRandom;
 
-public class DataPacket extends Packet {
+class DataPacket extends Packet {
     private final static SecureRandom rand = new SecureRandom();
 
     private Flag flag = new Flag();

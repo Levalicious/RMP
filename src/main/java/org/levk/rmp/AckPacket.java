@@ -1,16 +1,15 @@
 package org.levk.rmp;
 
 class AckPacket extends Packet {
-    private Flag flag = new Flag();
     private byte[] ack_id = new byte[4];
 
     private byte[] encoded;
 
     AckPacket(byte[] id, boolean enc) {
         this.ack_id = id;
-
         this.encoded = new byte[5];
 
+        Flag flag = new Flag();
         encoded[0] = flag.getByte();
         System.arraycopy(ack_id, 0, encoded, 1, 4);
     }

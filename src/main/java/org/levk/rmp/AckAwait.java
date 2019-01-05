@@ -6,7 +6,7 @@ class AckAwait {
     private static final long retryDelay = 3000;
     private static final short attemptMax = 11;
 
-    private Packet packet;
+    private final Packet packet;
     private short attempts;
     private long lastTry;
 
