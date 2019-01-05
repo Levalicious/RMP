@@ -6,11 +6,11 @@ class AckAwait {
     private static final long retryDelay = 3000;
     private static final short attemptMax = 11;
 
-    private DataPacket packet;
+    private Packet packet;
     private short attempts;
     private long lastTry;
 
-    AckAwait(DataPacket packet) {
+    AckAwait(Packet packet) {
         this.packet = packet;
         this.attempts = 0;
         this.lastTry = 0;
@@ -24,13 +24,22 @@ class AckAwait {
         return attempts >= attemptMax;
     }
 
-    DataPacket attempt() {
+    byte[] attempt() {
         attempts++;
         lastTry = System.currentTimeMillis();
-        return packet;
+
+        if (packet instanceof DataPacket) {
+            return ((DataPacket) packet).getEncoded();
+        } else {
+            return ((Fragment) packet).getEncoded();
+        }
     }
 
     boolean idCheck(byte[] id) {
-        return Arrays.equals(packet.getId(), id);
+        if (packet instanceof DataPacket) {
+            return Arrays.equals(((DataPacket) packet).getId(), id);
+        } else {
+            return Arrays.equals(((Fragment) packet).getId(), id);
+        }
     }
 }

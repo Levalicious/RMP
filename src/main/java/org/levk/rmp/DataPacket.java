@@ -40,10 +40,6 @@ public class DataPacket extends Packet {
         return id;
     }
 
-    public boolean toAck() {
-        return flag.testBit(1);
-    }
-
     public byte[] getPayload() {
         return payload;
     }
