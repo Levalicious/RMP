@@ -10,7 +10,7 @@ import java.nio.channels.DatagramChannel;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-class RSocket {
+public class RSocket {
     private DatagramChannel socket;
     private ByteBuffer buf;
 
@@ -211,5 +211,13 @@ class RSocket {
         }
 
         return temp;
+    }
+
+    public int getSendFails() {
+        return sendFails;
+    }
+
+    public int getReceiveFails() {
+        return receiveFails;
     }
 }
